@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<h1>Manipulando Texto</h1>
+		
+		<button id="bt1-1">Clique para recuperar o texto.</button><br />
+		<button id="bt1-2">Clique para alterar o texto.</button><br />
+		
+		<p id="1-1">Texto aleatório...</p>
+		
+		<button id="bt1-3">Clique para recuperar o texto de todos.</button><br />
+		<button id="bt1-4">Clique para alterar o texto de todos.</button><br />
+		
+		<p class="1-2"><b>Texto 1</b></p>
+		<p class="1-2"><b>Texto 2</b></p>
+		<p class="1-2"><b>Texto 3</b></p>
+		
+		<button id="bt1-5">Clique para recuperar o texto da ul.</button><br />
+		<button id="bt1-6">Clique para alterar o texto da ul.</button><br />
+		
+		<ul class="1-4">
+			<li>li 1</li>
+			<li>li 2</li>
+			<li>li 3</li>
+		</ul>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>			
+			//Recuperando texto de um elemento
+			$("#bt1-1").click(
+				function(e){
+					alert($("#1-1").text());
+				}
+			);
+			
+			//Alterando texto de um elemento
+			$("#bt1-2").click(
+				function(e){
+					$("#1-1").text("Tags <b>HTML</b> são ignoradas");
+				}
+			);
+			
+			//Recuperando texto de diversos elementos
+			$("#bt1-3").click(
+				function(e){
+					alert($(".1-2").text());
+				}
+			);
+			
+			//Alterando texto de diversos elementos
+			$("#bt1-4").click(
+				function(e){
+					$(".1-2").text("Todos os textos são recuperados/mudados.");
+				}
+			);
+			
+			/*Cuidado ao manipular elementos que contenham outros elementos
+				Recuperar o texto ignorará as tags HTML.
+				Alterar o texto não permitirá adição de tags HTML. Provavelmente
+					destruirá tudo o que estiver dentro.
+			*/
+			//Recuperando texto da ul
+			$("#bt1-5").click(
+				function(e){
+					alert($(".1-4").text());
+				}
+			);
+			
+			//Alterando texto da ul
+			$("#bt1-6").click(
+				function(e){
+					$(".1-4").text("<li>Destruiu todos os li</li>");
+				}
+			);
+		</script>
+	</body>
+</html>

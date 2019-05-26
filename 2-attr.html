@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Manipulação de atributo HTML</title>
+		<style>
+			.classe1{
+				font-weight: bold;
+				font-style: normal;
+				color: red;
+			}
+			
+			.classe2{
+				font-weight: normal;
+				font-style: italic;
+				color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Manipulação de atributo HTML</h1>
+		
+		<h3>Atributo valor</h3>
+		
+		<p>Edite o campo de texto: <input id="ex1" type="text" /></p>
+		
+		<p>Texto digitado: <span id="res1"></span></p>
+		
+		<hr />
+		
+		<p>Modifique o select abaixo para escolher uma marca</p>
+		Marca: 
+		<select id="ex2">
+			<option>Renault</option>
+			<option>Nissan</option>
+			<option>Mazda</option>
+			<option>Chevrolet</option>
+			<option>Mercedes</option>
+		</select>
+		
+		<p>Marca escolhida: <input type="text" id="res2" /></p>
+		
+		<hr />
+		
+		<h3>Atributo src</h3>
+		
+		<p>Clique sobre a imagem para mudá-la</p>
+		
+		<img id="img3" src="lampoff.gif" />
+		
+		<hr />
+		
+		<h3>Atributo classe</h3>
+		
+		<p id="ex4" class="classe1">Passe e retire o mouse para mudar minha classe</p>
+		
+		<hr />
+		
+		<script>
+			//=======================================================================
+			//Recuperação atributo campo de texto
+			document.getElementById("ex1").oninput = function(){
+				document.getElementById("res1").innerHTML = this.value;
+			}
+			//=======================================================================
+			//Recuperação atributo select e manipulação campo de texto
+			document.getElementById("res2").value = document.getElementById("ex2").value;
+			
+			document.getElementById("ex2").onchange = function(){
+				document.getElementById("res2").value = this.value;
+			}
+			//=======================================================================
+			//Manipulação imagem
+			var ligada = false;
+			
+			document.getElementById("img3").onclick = function(){
+				if(ligada === false){
+					ligada = true;
+					this.src = "lampon.gif";
+				}
+				else{
+					ligada = false;
+					this.src = "lampoff.gif";
+				}
+			}
+			//=======================================================================
+			//Manipulação de classe
+			document.getElementById("ex4").onmouseenter = function(){
+				this.className = "classe2";
+			}
+			
+			document.getElementById("ex4").onmouseout = function(){
+				this.className = "classe1";
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

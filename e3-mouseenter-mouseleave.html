@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Eventos mouseenter e mouseleave</h1>
+		
+		<button id="will1">Coloque o mouse sobre mim</button><br /><br />
+		
+		<button id="will2">Retire o mouse de cima de mim</button>
+		
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//O evento mouseenter é disparado quando mouse se
+			//posiciona sobre o elemento
+				
+			//O evento mouseleave é disparado quando mouse deixa de
+			//se posiciona sobre o elemento
+			
+			$("#will1").mouseenter(function(){
+				alert("Evento mouseenter disparado.");
+			});
+				
+			$("#will2").mouseleave(function(){
+				alert("Evento mouseleave disparado.");
+			});
+				
+			$(".iftm").mouseenter(function(){
+				$(this).css("background","lime");
+			});
+			
+			$(".iftm").mouseleave(function(){
+				$(this).css("background","cyan");
+			});
+		</script>
+	</body>
+</html>

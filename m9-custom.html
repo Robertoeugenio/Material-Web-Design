@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Manipulando Dados - Atributos Customizados</h1>
+		
+		<img src="lampoff.gif"/>
+		<img src="lampoff.gif"/>
+		<img src="lampoff.gif"/>
+		<img src="lampoff.gif"/>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>			
+			$("img").data("state","off");
+			
+			//Se a lâmpada for clicada
+			$("img").click(
+				function(e){
+					if($(this).data("state") == "off"){
+						$(this).data("state","on");
+						$(this).attr("src","lampon.gif");
+					}
+					else{
+						$(this).data("state","off");
+						$(this).attr("src","lampoff.gif");
+					}
+				}
+			);				
+		</script>
+	</body>
+</html>

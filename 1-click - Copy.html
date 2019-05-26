@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Evento click - Manipulador onclick</title>
+		<style>
+			.class1{
+				color: red;
+			}
+			
+			.class2{
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Evento click - Manipulador onclick</h1>
+		
+		<img id="lamp" src="lampon.gif" />
+		
+		<ol id="coxa">
+			<li>asfa</li>
+			<li>aaaaa</li>
+		</ol>
+		
+		<p class="class1">asdfasdfasdf</p>
+		<p class="class2" id="exclass">xxxxxxxxxxxxxxxxxxx</p>
+		
+		<script>
+			//=======================================================================
+			document.getElementById("lamp").onclick = function(){
+				this.src = "lampoff.gif";
+			}
+			
+			var coxa = document.getElementById("coxa").innerHTML;
+			document.getElementById("coxa").innerHTML =  coxa + "<li>oi</li>";
+			
+			document.getElementById("coxa").karai = "zé";
+			alert(document.getElementById("coxa").karai);
+			
+			document.getElementById("exclass").className = "class1";
+			//=======================================================================
+		</script>
+	</body>
+</html>

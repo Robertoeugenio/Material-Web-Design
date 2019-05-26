@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Evento hover</h1>
+		
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//Evento hover, combinação de mouseenter e mouseleave
+			
+			//OBS: O evento hover é um evento especial que possui duas funções.
+			//A primeira será disparada quando o mouse entrar no elemento.
+			//A segunda será disparada quando quando o mouse sair.
+				
+			$(".iftm").hover(
+				function(){//Quando o mouse entra
+					$(this).css("background","yellow");
+				}, //ATENÇÃO NESTA VÍRGULA SEPARANDO AS DUAS FUNÇÕES!!! MUITA ATENÇÃO NA SINTAXE.
+				function(){//Quando o mouse sai
+					$(this).css("background","silver");
+				}
+			);
+				
+			//OBS: Se dois eventos que são disparados da mesma maneira forem colocados no mesmo elemento,
+			//o evento que foi declarado por último terá prioridade.
+		</script>
+	</body>
+</html>

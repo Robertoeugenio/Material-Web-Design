@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			p{
+				background:cyan;
+				margin: 10px 0px;
+				padding: 20px 0px;
+			}
+			h1,h2,h3{
+				text-decoration:underline;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Efeitos</h2>
+		
+		<h3>Slide</h3>
+		
+		<button id="efeito9">Clique no botão para esconder um parágrafo.</button><br />
+		<p id="efeito9par">Parágrafo #efeito9par.</p>
+		
+		<button id="efeito10">Clique no botão para mostrar um parágrafo.</button><br />
+		<p id="efeito10par">Parágrafo #efeito10par.</p>
+		
+		<button id="efeito11">Clique no botão para <span id="efeito11aux">ESCONDER</span> um parágrafo</button><br />
+		<p id="efeito11par">Parágrafo #efeito11par.</p>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>
+			/*
+				Terceiro efeito: Slide (slideUp, slideDown e slideToggle)
+				Realiza um efeito mudando a altura de um elemento.
+			*/
+				//Esconder o elemento de id 'efeito9par' com efeito de subida.
+				$("#efeito9").click(
+					function(e){
+						$("#efeito9par").slideUp(
+							1000,
+							function(){
+								alert("Elemento escondido.")
+							}
+						);
+					}
+				);
+				
+				//Escondendo o elemento de id 'efeito10par' para mostrá-lo com efeito.
+				$("#efeito10par").css("display","none");
+				//Mostrar o elemento de id 'efeito10par' com efeito de descida.
+				$("#efeito10").click(
+					function(e){
+						$("#efeito10par").slideDown(
+							1000,
+							function(){
+								alert("Elemento mostrado.")
+							}
+						);
+					}
+				);
+				
+				//Mudar o estado de display do o elemento de id 'efeito11par'.
+				$("#efeito11").click(
+					function(e){
+						$("#efeito11par").slideToggle(
+							1000,
+							function(){
+								//Se o atributo CSS display for none, ou seja, se o elemento
+								//não estiver mostrado
+								if($(this).css("display") == "none"){
+									$("#efeito11aux").html("MOSTRAR");
+								}
+								//Se ele estiver mostrado
+								else{
+									$("#efeito11aux").html("ESDONDER");
+								}
+							}
+						);
+					}
+				);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Evento change</h1>
+		
+		<select id="sel">
+			<option value="1">Opção 1</option>
+			<option value="2">Opção 2</option>
+			<option value="3">Opção 3</option>
+			<option value="4">Opção 4</option>
+		</select><br /><br />
+		
+		<input id="tx" type="text" /><br /><br />
+			
+		<input id="chb" type="checkbox" />Checar?<br /><br />
+		
+		<input class="rd" type="radio" value="1" name="rd" checked="checked"/>Radio1<br />
+		<input class="rd" type="radio" value="2" name="rd"/>Radio2<br />
+		<input class="rd" type="radio" value="3" name="rd"/>Radio3<br />
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//Evento change é disparado quando o value de um elemento
+			//de entrada é modificado. Compatível com qualquer elemento
+			//de entrada, e.g., input, select, etc.
+			
+			$("select").change(function(){
+				$(this).css("color","red");
+				alert("Valor do select mudou.");
+			});
+			
+			//Atenção ao campo de texto, pois seu valor muda somente
+			//quando ele perde o foco. Ao modificar o valor, clique
+			//fora dele para retirar o foco.
+			$("#tx").change(function(){
+				$(this).css("background","lime");
+				alert("Valor do campo de texto #tx mudou.");
+			});
+			
+			$("#chb").change(function(){
+				alert("Valor do checkbox #chb mudou.");
+			});
+			
+			$(".rd").change(function(){
+				alert("Valor do radio de nome rd mudou.");
+			});
+		</script>
+	</body>
+</html>

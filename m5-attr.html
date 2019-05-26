@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Atributos</h1>
+		
+		<button id="bt5-1">Clique para recuperar o atributo.</button><br />
+		<button id="bt5-2">Clique para alterar o atributo.</button><br /><br />
+		
+		<img id="5-1" src="lampoff.gif" /><br /><br />
+		
+		<button id="bt5-3">Clique para recuperar o valor.</button><br />
+		<button id="bt5-3-1">Clique para recuperar o valor com each.</button><br />
+		<button id="bt5-4">Clique para alterar o valor.</button><br /><br />
+		
+		<p><a class="5-2" href="http://www.iftm.edu.br">IFTM</a></p>
+		<p><a class="5-2" href="http://www.google.com.br">Google</a></p>
+		<p><a class="5-2" href="http://www.hotmail.com">Hotmail</a></p>	
+
+		<script src="jquery-3.1.0.js"></script>
+		<script>			
+			//Recuperando o atributo de um elemento
+			$("#bt5-1").click(
+				function(){
+					alert($("#5-1").attr("src"));
+				}
+			);
+			
+			//Alterando o atributo de um elemento
+			$("#bt5-2").click(
+				function(){
+					$("#5-1").attr("src","lampon.gif");
+				}
+			);
+			
+			//Recuperando o atributo de diversos elementos
+			$("#bt5-3").click(
+				function(){
+					alert($(".5-2").attr("href"));
+				}
+			);
+			
+			//Recuperando atributo de diversos elementos com each
+			$("#bt5-3-1").click(
+				function(){
+					$(".5-2").each(
+						function(i){
+							alert("Índice " + i + " = " + $(this).attr("href"));
+						}
+					);
+				}
+			);
+			
+			//Alterando o atributo de diversos elementos
+			$("#bt5-4").click(
+				function(){
+					$(".5-2").text("Will");
+					$(".5-2").attr("href","http://www.will.com.br");
+				}
+			);
+		</script>		
+	</body>
+</html>

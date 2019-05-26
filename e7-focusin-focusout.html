@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{
+				padding:10px;
+				border:solid 1px black;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Eventos focusin e focusout</h1>
+		
+		<div>
+			<h1>Título</h1>
+			Nome: <input class="texto" type="text"/><br />
+			Sobrenome: <input class="texto" type="text"/>
+
+		</div>
+		
+		<h1>Outro título que não muda</h1>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>			
+			//Evento focusin é disparado quando um elemento 
+			//OU UM DE SEUS DESCENDENTES ganha
+			//o foco, e é permitida sua edição.
+			
+			//Evento focusout é disparado quando um elemento
+			//OU UM DE SEUS DESCENDENTES perde
+			//o foco, sendo o foco passado a outro elemento.
+			
+			//A diferença entre os eventos focus e blur é que
+			//o evento é disparado também por seus descendentes.
+			
+			//Porém, quem dispara o evento é o elemento
+			//que possui o evento anexado
+
+			$("div").focusin(function(){
+				$(this).css("background","lime");
+				$(this).find("h1").css("color","red");
+			});
+			
+			$("div").focusout(function(){
+				$(this).css("background","yellow");
+				$(this).find("h1").css("color","black");
+			});			
+		</script>
+	</body>
+</html>

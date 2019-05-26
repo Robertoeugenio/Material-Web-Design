@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Manipulação de conteúdo - Adição e remoção de elementos</title>
+		<style>
+			table, table td{
+				border: black 1px solid;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Manipulação de conteúdo - Adição e remoção de elementos</h1>
+		
+		<h3>Adição como filho ao final e remoção pelo começo</h3>
+		
+		<button id="ex1btadd">Adicionar ao final</button>
+		<button id="ex1btrem">Remover o primeiro</button>
+		
+		<p>Lista:</p>
+		<ul id="ex1">
+			<li>Item 1</li>
+			<li>Item 2</li>
+		</ul>
+		
+		<hr />
+		
+		<h3>Adição no mesmo nível e reinício</h3>
+		
+		Nome a ser adicionado: <input id="ex2input" type="text" value="Jovem" />
+		<button id="ex2btadd">Adicionar primeiro</button>
+		<button id="ex2btrem">Resetar tabela</button>
+				
+		<p>Tabela:</p>
+		<table id="ex2">
+			<th>Nome</th>
+			<tr>
+				<td>Will</td>
+			</tr>
+		</table>		
+		<script>
+			//=======================================================================
+			var numex1 = 3;
+			
+			//Adição de elemento exemplo 1
+			document.getElementById("ex1btadd").onclick = function(){
+				var item = document.createElement("li");
+				item.innerHTML = "Item " + numex1;
+				numex1++;
+				document.getElementById("ex1").appendChild(item);
+			}
+			//=======================================================================
+			//Remoção de primeiro elemento exemplo 1
+			document.getElementById("ex1btrem").onclick = function(){
+				document.getElementById("ex1").firstElementChild.remove();
+			}
+			//=======================================================================
+			//Adição de elemento exemplo 2
+			document.getElementById("ex2btadd").onclick = function(){
+				var novotr = document.createElement("tr");
+				var novotd = document.createElement("td");
+				novotd.innerHTML = document.getElementById("ex2input").value;
+				novotr.appendChild(novotd); //Colocando a célula na linha
+				
+				//CUIDADO: <th> está dentro de uma <tr> e portanto é a primeira linha,
+				//e dentro da tabela existe o <tbody>. Use o inspetor para entender melhor.
+				var corpotabela = document.querySelectorAll("#ex2 tbody")[0];
+				corpotabela.insertBefore(novotr, corpotabela.children[1]);
+			}
+			
+			document.getElementById("ex2btrem").onclick = function(){
+				document.getElementById("ex2").innerHTML = 
+					"<th>Nome</th>" +
+						"<tr>" +
+							"<td>Will</td>" +
+						"</tr>";
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

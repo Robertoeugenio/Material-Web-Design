@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Atributos customizados</title>
+	</head>
+	<body>
+		
+		<h3>Atributo customizado para imagens</h3>
+		
+		<p>Clique sobre uma imagem para mudá-la</p>
+		
+		<img class="img3" src="lampoff.gif" />
+		<img class="img3" src="lampoff.gif" />
+		<img class="img3" src="lampoff.gif" />
+		<img class="img3" src="lampoff.gif" />
+		<img class="img3" src="lampoff.gif" />
+		
+		<hr />
+		
+		<script>
+			//=======================================================================
+			//Manipulação imagens com atributo customizado "ligada"
+			var imagens = document.querySelectorAll(".img3");
+			
+			for(var i=0;i<imagens.length;i++){
+				imagens[i].ligada = false;
+				imagens[i].onclick = function(){
+					if(this.ligada === false){
+						this.ligada = true;
+						this.src = "lampon.gif";
+					}
+					else{
+						this.ligada = false;
+						this.src = "lampoff.gif";
+					}
+				}
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

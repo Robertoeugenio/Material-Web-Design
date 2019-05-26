@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Seleção de Formulários</title>
+	</head>
+	<body>
+		<h1>Manipulação de Formulários</h1>
+		
+		<form name="form1">
+			<label for="nome">Nome:</label>
+			<input type="text" name="nome" value="Jovem" /> <br />
+			<label for="idade">Idade:</label>
+			<input type="number" name="idade" min="18" max="150" value="22"/> <br />
+			<input type="submit" value="Cadastrar">
+		</form>
+		
+		<script>
+			//-------------------------------------------------------------
+			console.log(document.forms["form1"]["nome"].value);
+			console.log(document.forms["form1"]["idade"].value);
+			//-------------------------------------------------------------
+			document.forms["form1"].onsubmit = function(){
+				var nome = this["nome"].value;		
+				var idade = this["idade"].value;		
+				alert("Nome: " + nome + " - Idade: " + idade);			
+				return false;
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

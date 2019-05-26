@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Evento double click - Manipulador ondblclick</title>
+	</head>
+	<body>
+		<h1>Evento click duplo - Manipulador ondblclick</h1>
+		
+		<p id="will">Clique 2x em mim - id will</p>
+		
+		<hr />
+		
+		<p class="iftm">Clique 2x em mim - classe iftm</p>
+		<p class="iftm">Clique 2x em mim - classe iftm</p>
+		<p class="iftm">Clique 2x em mim - classe iftm</p>
+		
+		<hr />
+		
+		<button>Clique 2x, sou um botão</button><br />
+		<button>Clique 2x, sou um botão</button><br />
+		<button>Clique 2x, sou um botão</button><br />
+		<button>Clique 2x, sou um botão</button><br />
+		
+		<script>
+			//=======================================================================
+			//FUNÇÃO A SER EXECUTADA QUANDO O DUPLO CLIQUE OCORRER NO ELEMENTO DE ID WILL
+			function funcIdWill(){
+				alert("Elemento ID will clicado 2x");
+			}
+			//ATRIBUIÇÃO DO EVENTO
+			document.getElementById("will").ondblclick = funcIdWill;
+			//=======================================================================
+			//TRATANDO EVENTO DUPLO CLIQUE EM ELEMENTOS DA CLASSE IFTM		
+			var seliftm = document.querySelectorAll(".iftm");
+			for(var i=0;i<seliftm.length;i++){
+				seliftm[i].ondblclick = function(){
+					this.style.background = "red";
+				}
+			}
+			//=======================================================================			
+			//TRATANDO EVENTO DUPLO CLIQUE EM ELEMENTOS BOTÕES
+			function funcBotoes(){
+				var temp = document.querySelectorAll("button");
+				for(var i=0;i<temp.length;i++){
+					temp[i].style.color = "red";
+				}
+			}
+			
+			var selbotoes = document.querySelectorAll("button");
+			for(var i=0;i<selbotoes.length;i++){
+				selbotoes[i].ondblclick = funcBotoes;
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Expressões Regulares</title>
+	</head>
+	<body>
+		<h1>Expressões Regulares</h1>
+		
+		<h3>Abra o console, jovem.</h3>
+		
+		<script>
+			//-------------------------------------------------------------
+			var str1a = "O jovem estudou.";
+			
+			var exp1a = /jovem/;
+			var exp1b = /velho/;
+			
+			console.log("EXEMPLO 1: FUNCIONALIDADES");
+			console.log("TEST:");
+			console.log(exp1a + " | " + str1a + " -> " + exp1a.test(str1a));
+			console.log(exp1b + " | " + str1a + " -> " + exp1b.test(str1a));
+			console.log("-----------------");
+			console.log("EXEC:");
+			console.log(exp1a + " | " + str1a + " -> " + exp1a.exec(str1a));
+			console.log(exp1b + " | " + str1a + " -> " + exp1b.exec(str1a));
+			console.log("-----------------");
+			console.log("REPLACE:");
+			console.log(exp1a + " | " + str1a + " -> " + str1a.replace(exp1a, "mancebo"));
+			console.log(exp1b + " | " + str1a + " -> " + str1a.replace(exp1b, "mancebo"));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str2a = "abc";
+			var str2b = "a8c";
+			var str2c = "a=c";
+			var str2d = "a.c";
+			var str2e = "a\nc";
+			
+			var exp2a = /a.c/;
+			
+			console.log("EXEMPLO 2: METACARACTERE .");
+			console.log(exp2a + " | " + str2a + " -> " + exp2a.exec(str2a));
+			console.log(exp2a + " | " + str2b + " -> " + exp2a.exec(str2b));
+			console.log(exp2a + " | " + str2c + " -> " + exp2a.exec(str2c));
+			console.log(exp2a + " | " + str2d + " -> " + exp2a.exec(str2d));
+			console.log(exp2a + " | " + "a\\nc" + " -> " + exp2a.exec(str2e));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str3a = "jovem";
+			var str3b = "JoVeM";
+			var str3c = "JOVEM";
+			
+			var exp3a = /jovem/;
+			var exp3b = /jovem/i;
+			
+			console.log("EXEMPLO 3: CASE INSENSITIVE");
+			console.log(exp3a + " | " + str3a + " -> " + exp3a.test(str3a));
+			console.log(exp3a + " | " + str3b + " -> " + exp3a.test(str3b));
+			console.log(exp3a + " | " + str3c + " -> " + exp3a.test(str3c));
+			console.log("-----------------");
+			console.log(exp3b + " | " + str3a + " -> " + exp3b.test(str3a));
+			console.log(exp3b + " | " + str3b + " -> " + exp3b.test(str3b));
+			console.log(exp3b + " | " + str3c + " -> " + exp3b.test(str3c));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str4a = "CEP: 38400-000";
+			var str4b = "38400-000 é o CEP";
+			var str4c = "38400-000";
+			
+			var exp4a = /\d\d\d\d\d-\d\d\d/;
+			var exp4b = /^\d\d\d\d\d-\d\d\d/;
+			var exp4c = /^\d\d\d\d\d-\d\d\d$/;
+			
+			console.log("EXEMPLO 4: METACARACTERES \\d, ^ E $");
+			console.log(exp4a + " | " + str4a + " -> " + exp4a.test(str4a));
+			console.log(exp4a + " | " + str4b + " -> " + exp4a.test(str4b));
+			console.log(exp4a + " | " + str4c + " -> " + exp4a.test(str4c));
+			console.log("-----------------");
+			console.log(exp4b + " | " + str4a + " -> " + exp4b.test(str4a));
+			console.log(exp4b + " | " + str4b + " -> " + exp4b.test(str4b));
+			console.log(exp4b + " | " + str4c + " -> " + exp4b.test(str4c));
+			console.log("-----------------");
+			console.log(exp4c + " | " + str4a + " -> " + exp4c.test(str4a));
+			console.log(exp4c + " | " + str4b + " -> " + exp4c.test(str4b));
+			console.log(exp4c + " | " + str4c + " -> " + exp4c.test(str4c));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str5a = "ç";
+			var str5b = "á";
+			var str5c = "õ";
+			var str5d = "w";
+			var str5e = "W";
+			
+			var exp5a = /\w/;
+			
+			console.log("EXEMPLO 5: METACARACTERE \\w COM CARACTERES ESPECIAIS (NÃO FUNCIONA)");
+			console.log(exp5a + " | " + str5a + " -> " + exp5a.exec(str5a));
+			console.log(exp5a + " | " + str5b + " -> " + exp5a.exec(str5b));
+			console.log(exp5a + " | " + str5c + " -> " + exp5a.exec(str5c));
+			console.log(exp5a + " | " + str5d + " -> " + exp5a.exec(str5d));
+			console.log(exp5a + " | " + str5e + " -> " + exp5a.exec(str5e));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str6a = "XaY";
+			var str6b = "XeY";
+			var str6c = "XiY";
+			var str6d = "XwY";
+			
+			var exp6a = /X[aeiou]Y/;
+			
+			console.log("EXEMPLO 6: BUSCANDO UMA GAMA DE CARACTERES");
+			console.log(exp6a + " | " + str6a + " -> " + exp6a.exec(str6a));
+			console.log(exp6a + " | " + str6b + " -> " + exp6a.exec(str6b));
+			console.log(exp6a + " | " + str6c + " -> " + exp6a.exec(str6c));
+			console.log(exp6a + " | " + str6d + " -> " + exp6a.exec(str6d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str7a = "X0Y";
+			var str7b = "X5Y";
+			var str7c = "X9Y";
+			var str7d = "XwY";
+			
+			var exp7a = /X[0-9]Y/;
+			
+			console.log("EXEMPLO 7: BUSCANDO UMA FAIXA CONTÍNUA DE CARACTERES");
+			console.log(exp7a + " | " + str7a + " -> " + exp7a.exec(str7a));
+			console.log(exp7a + " | " + str7b + " -> " + exp7a.exec(str7b));
+			console.log(exp7a + " | " + str7c + " -> " + exp7a.exec(str7c));
+			console.log(exp7a + " | " + str7d + " -> " + exp7a.exec(str7d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str8a = "XaY";
+			var str8b = "XwY";
+			var str8c = "XVY";
+			var str8d = "X7Y";
+			
+			var exp8a = /X[a-z]Y/;
+			
+			console.log("EXEMPLO 8: BUSCANDO UMA FAIXA CONTÍNUA DE CARACTERES");
+			console.log(exp8a + " | " + str8a + " -> " + exp8a.exec(str8a));
+			console.log(exp8a + " | " + str8b + " -> " + exp8a.exec(str8b));
+			console.log(exp8a + " | " + str8c + " -> " + exp8a.exec(str8c));
+			console.log(exp8a + " | " + str8d + " -> " + exp8a.exec(str8d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str9a = "À";
+			var str9b = "á";
+			var str9c = "ç";
+			var str9d = "Õ";
+			var str9e = "W";
+			var str9f = "9";
+			
+			var exp9a = /[a-zA-Z\u00C0-\u00FF]/;
+			
+			console.log("EXEMPLO 9: BUSCANDO QUALQUER LETRA, INCLUINDO ACENTUADAS");
+			console.log(exp9a + " | " + str9a + " -> " + exp9a.exec(str9a));
+			console.log(exp9a + " | " + str9b + " -> " + exp9a.exec(str9b));
+			console.log(exp9a + " | " + str9c + " -> " + exp9a.exec(str9c));
+			console.log(exp9a + " | " + str9d + " -> " + exp9a.exec(str9d));
+			console.log(exp9a + " | " + str9e + " -> " + exp9a.exec(str9e));
+			console.log(exp9a + " | " + str9f + " -> " + exp9a.exec(str9f));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str10a = "b";
+			var str10b = "X";
+			var str10c = "A";
+			var str10d = "Ç";
+			var str10e = "3";
+			var str10f = "i";
+			
+			var exp10a = /[^aeiou]/;
+			
+			console.log("EXEMPLO 10: EXCLUINDO UMA GAMA DE CARACTERES");
+			console.log(exp10a + " | " + str10a + " -> " + exp10a.exec(str10a));
+			console.log(exp10a + " | " + str10b + " -> " + exp10a.exec(str10b));
+			console.log(exp10a + " | " + str10c + " -> " + exp10a.exec(str10c));
+			console.log(exp10a + " | " + str10d + " -> " + exp10a.exec(str10d));
+			console.log(exp10a + " | " + str10e + " -> " + exp10a.exec(str10e));
+			console.log(exp10a + " | " + str10f + " -> " + exp10a.exec(str10f));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str11a = "3";
+			var str11b = "õ";
+			var str11c = "Á";
+			var str11d = "ç";
+			var str11e = "W";
+			var str11f = "w";
+			
+			var exp11a = /[^A-Za-z]/;
+			
+			console.log("EXEMPLO 11: EXCLUINDO UMA GAMA CONTÍNUA DE CARACTERES");
+			console.log(exp11a + " | " + str11a + " -> " + exp11a.exec(str11a));
+			console.log(exp11a + " | " + str11b + " -> " + exp11a.exec(str11b));
+			console.log(exp11a + " | " + str11c + " -> " + exp11a.exec(str11c));
+			console.log(exp11a + " | " + str11d + " -> " + exp11a.exec(str11d));
+			console.log(exp11a + " | " + str11e + " -> " + exp11a.exec(str11e));
+			console.log(exp11a + " | " + str11f + " -> " + exp11a.exec(str11f));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str12a = "3";
+			var str12b = "123a45";
+			var str12c = "1aaaa";
+			var str12d = "aaaa11";
+			var str12e = "jovem";
+			
+			var exp12a = /\d+/;
+			
+			console.log("EXEMPLO 12: QUANTIFICADORES 1");
+			console.log(exp12a + " | " + str12a + " -> " + exp12a.exec(str12a));
+			console.log(exp12a + " | " + str12b + " -> " + exp12a.exec(str12b));
+			console.log(exp12a + " | " + str12c + " -> " + exp12a.exec(str12c));
+			console.log(exp12a + " | " + str12d + " -> " + exp12a.exec(str12d));
+			console.log(exp12a + " | " + str12e + " -> " + exp12a.exec(str12e));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str13a = "3";
+			var str13b = "jovem";
+			var str13c = "123asdf";
+			var str13d = "asdf123";
+
+			var exp13a = /\d+[A-Za-z]*/;
+			
+			console.log("EXEMPLO 13: QUANTIFICADORES 2");
+			console.log(exp13a + " | " + str13a + " -> " + exp13a.exec(str13a));
+			console.log(exp13a + " | " + str13b + " -> " + exp13a.exec(str13b));
+			console.log(exp13a + " | " + str13c + " -> " + exp13a.exec(str13c));
+			console.log(exp13a + " | " + str13d + " -> " + exp13a.exec(str13d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str14a = "123456";
+			var str14b = "12345678";
+			var str14c = "122333444455555";
+			var str14d = "jovem";
+			var str14e = "jovem123";
+			
+			var exp14a = /^\w{8,}$/;
+			
+			console.log("EXEMPLO 14: QUANTIFICADORES 3");
+			console.log(exp14a + " | " + str14a + " -> " + exp14a.test(str14a));
+			console.log(exp14a + " | " + str14b + " -> " + exp14a.test(str14b));
+			console.log(exp14a + " | " + str14c + " -> " + exp14a.test(str14c));
+			console.log(exp14a + " | " + str14d + " -> " + exp14a.test(str14d));
+			console.log(exp14a + " | " + str14e + " -> " + exp14a.test(str14e));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str15a = "XYZ-1234";
+			var str15b = "BR-123";
+			var str15c = "jovem";
+			var str15d = "123-ASDF";
+			var str15e = "XYZ#1234";
+			
+			var exp15a = /^[A-Z]{3}-\d{4}$/;
+			
+			console.log("EXEMPLO 15: QUANTIFICADORES 4");
+			console.log(exp15a + " | " + str15a + " -> " + exp15a.test(str15a));
+			console.log(exp15a + " | " + str15b + " -> " + exp15a.test(str15b));
+			console.log(exp15a + " | " + str15c + " -> " + exp15a.test(str15c));
+			console.log(exp15a + " | " + str15d + " -> " + exp15a.test(str15d));
+			console.log(exp15a + " | " + str15e + " -> " + exp15a.test(str15e));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str16a = "abc";
+			var str16b = "abcabc";
+			var str16c = "abcabcabc";
+			var str16d = "aabbcc";
+
+			var exp16a = /(abc)+/;
+			
+			console.log("EXEMPLO 16: AGRUPADORES 1");
+			console.log(exp16a + " | " + str16a + " -> " + exp16a.test(str16a));
+			console.log(exp16a + " | " + str16b + " -> " + exp16a.test(str16b));
+			console.log(exp16a + " | " + str16c + " -> " + exp16a.test(str16c));
+			console.log(exp16a + " | " + str16d + " -> " + exp16a.test(str16d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str17a = "www.google.com.br";
+			var str17b = "www.google.com";
+			var str17c = "www.ufu.br";
+			var str17d = "www.iftm.edu.br";
+
+			var exp17a = /www\.[a-z]+\.com(\.br)?/i;
+			
+			console.log("EXEMPLO 17: AGRUPADORES 2");
+			console.log(exp17a + " | " + str17a + " -> " + exp17a.test(str17a));
+			console.log(exp17a + " | " + str17b + " -> " + exp17a.test(str17b));
+			console.log(exp17a + " | " + str17c + " -> " + exp17a.test(str17c));
+			console.log(exp17a + " | " + str17d + " -> " + exp17a.test(str17d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+			var str18a = "O jovem estudou";
+			var str18b = "O velho estudou";
+			var str18c = "O mancebo estudou";
+			var str18d = "Ninguém estudou";
+
+			var exp18a = /(jovem|mancebo)/i;
+			
+			console.log("EXEMPLO 18: ALTERNANCIA COM AGRUPADORES");
+			console.log(exp18a + " | " + str18a + " -> " + exp18a.test(str18a));
+			console.log(exp18a + " | " + str18b + " -> " + exp18a.test(str18b));
+			console.log(exp18a + " | " + str18c + " -> " + exp18a.test(str18c));
+			console.log(exp18a + " | " + str18d + " -> " + exp18a.test(str18d));
+			console.log("====================================");
+			//-------------------------------------------------------------
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

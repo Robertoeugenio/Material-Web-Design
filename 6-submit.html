@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Evento submit - Manipulador onsubmit</title>
+	</head>
+	<body>		
+		<h1>Evento submit - Manipulador onsubmit</h1>
+		
+		Preencha o formulário e submeta: 
+		<form id="willform">
+			Nome: <input type="text" />
+			<input type="submit" value="Submeter" /><br />
+		</form>
+		<script>
+			//=======================================================================
+			//TRATANDO EVENTO SUBMIT DO FORMULÁRIO DE ID WILLFORM			
+			document.getElementById("willform").onsubmit = function(){
+				alert("Bem-vindo(a) " + this.firstElementChild.value);
+				return false; //Impede que o formulário seja submetido
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

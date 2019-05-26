@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Eventos focus e blur - Manipuladores onfocus e onblur</title>
+	</head>
+	<body>		
+		<h1>Eventos focus e blur - Manipuladores onfocus e onblur</h1>
+		
+		Preencha o formulário: 
+		<form id="willform">
+			Nome: <input type="text" /><br />
+			Profissão: <input type="text" /><br />
+			Idade: <input type="text" /><br />
+			E-mail: <input type="text" /><br />
+		</form>
+		<script>
+			//=======================================================================
+			//TRATANDO EVENTOS FOCUS E BLUR NOS ELEMENTOS DO FORMULÁRIO DE ID WILLFORM
+			var elementos = document.getElementById("willform").children;
+			
+			for(var i=0;i<elementos.length;i++){
+				elementos[i].onfocus = function(){
+					this.style.background = "cyan";
+				}
+				
+				elementos[i].onblur = function(){
+					this.style.background = "white";
+				}
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

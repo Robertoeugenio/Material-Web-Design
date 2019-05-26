@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Evento click - Manipulador onclick</title>
+	</head>
+	<body>
+		<h1>Evento click - Manipulador onclick</h1>
+		
+		Ações no manipulador inline: 
+		<button onclick="alert('Primeiro botão clicado');">Primeiro botão</button>
+		
+		<hr />
+		
+		Função invocada pelo manipulador inline:
+		<button onclick="segundoBotao();">Segundo botão</button>
+		
+		<hr />
+		
+		Função invocada pelo manipulador no script:
+		<button id="bt3">Terceiro botão</button>
+		
+		<hr />
+		
+		Função anônima no manipulador do script:
+		<button id="bt4">Quarto botão</button>
+		
+		<hr />
+		
+		Função anônima no manipulador do script com manipulação dos elementos:
+		<button class="jovem">Botão Jovem 1</button>
+		<button class="jovem">Botão Jovem 2</button>
+		<button class="jovem">Botão Jovem 3</button>
+		<button class="jovem">Botão Jovem 4</button>
+		
+		<hr />
+		
+		Função anônima no manipulador do script com manipulação dos elementos:
+		<button class="mancebo">Botão Mancebo 1</button>
+		<button class="mancebo">Botão Mancebo 2</button>
+		<button class="mancebo">Botão Mancebo 3</button>
+		
+		<script>
+			//=======================================================================
+			//FUNÇÃO A SER EXECUTADA QUANDO O CLIQUE OCORRER NO SEGUNDO BOTÃO
+			function segundoBotao(){
+				alert("Segundo botão clicado");
+			}
+			//=======================================================================
+			//FUNÇÃO A SER EXECUTADA QUANDO O CLIQUE OCORRER NO TERCEIRO BOTÃO
+			function terceiroBotao(){
+				alert("Terceiro botão clicado");
+			}
+			//ATRIBUIÇÃO DO EVENTO AO TERCEIRO BOTÃO
+			document.getElementById("bt3").onclick = terceiroBotao;
+			//=======================================================================
+			//ATRIBUIÇÃO DO EVENTO AO QUARTO BOTÃO COM FUNÇÃO ANÔNIMA
+			document.getElementById("bt4").onclick = function(){
+				alert("Quarto botão clicado");
+			};
+			//=======================================================================
+			//FUNÇÃO A SER EXECUTADA QUANDO O CLIQUE OCORRER EM ALGUM BOTÃO JOVEM
+			function botaoJovem(){
+				alert(this.innerHTML + " clicado");
+			}
+			
+			//ATRIBUIÇÃO DO EVENTO AOS BOTÕES JOVENS COM FUNÇÃO E MANIPULAÇÃO DO ELEMENTO QUE DISPAROU O EVENTO
+			var btjovens = document.querySelectorAll(".jovem");
+			for(var i=0;i<btjovens.length;i++){
+				btjovens[i].onclick = botaoJovem;
+			}
+			//=======================================================================			
+			//ATRIBUIÇÃO DO EVENTO AOS BOTÕES JOVENS COM FUNÇÃO ANÔNIMA E MANIPULAÇÃO DO ELEMENTO QUE DISPAROU O EVENTO
+			var btmancebos = document.querySelectorAll(".mancebo");
+			for(var i=0;i<btmancebos.length;i++){
+				btmancebos[i].onclick = function(){
+					this.onclick = null;
+					this.style.color = "red";
+					alert(this.innerHTML + " clicado");
+				}
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

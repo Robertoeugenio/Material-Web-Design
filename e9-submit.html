@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Evento submit</h1>
+		
+		<form>
+			Nome: <input type="text"><br />
+			Sexo:
+			<input type="radio" name="rd" value="m" checked="checked">Masculino
+			<input type="radio" name="rd" value="f">Feminino<br />
+			<input type="submit" value="Submeter">
+		</form>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//O evento submit é disparado quando o form
+			//é submetido, ou seja, o elemento input de
+			//type="submit" é clicado.
+			
+			//Só pode ser anexado a forms.
+			
+			$("form").submit(function(e){
+				e.preventDefault();
+				alert("Formulário submetido.");
+			});
+		</script>		
+	</body>
+</html>

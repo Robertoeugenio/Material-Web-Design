@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>			
+			.classe8red{
+				color:red;
+				font-size:30px;
+			}
+			
+			.classe8blue{
+				color:blue;
+				font-style:italic;
+			}
+			
+			.classe8bold{
+				font-weight:bold;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Manipulando Classes CSS</h1>
+		
+		<button id="bt8-1">Clique para adicionar a classe 'classe8red'.</button><br />
+		<button id="bt8-2">Clique para remover a classe 'classe8red'.</button><br />
+		<button id="bt8-3">Clique para adicionar a classe 'classe8blue'.</button><br />
+		<button id="bt8-4">Clique para remover a classe 'classe8blue'.</button><br />
+		<button id="bt8-5">Clique para alternar a classe 'classe8bold'.</button><br />
+		
+		<p class="8-1">Texto para manipulação de classe.</p>
+		<p class="8-1">Texto para manipulação de classe.</p>
+		<a class="8-1" href="www.iftm.edu.br">Link para IFTM</a><br />
+		<hr />
+		
+		<button id="jovem">JOVEM</button>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//Adicionando a classe 'classe8red'
+			$("#bt8-1").click(
+				function(e){
+					$(".8-1").addClass("classe8red");
+				}
+			);
+			
+			//Removendo a classe 'classe8red'
+			$("#bt8-2").click(
+				function(e){
+					$(".8-1").removeClass("classe8red");
+				}
+			);
+			
+			//Adicionando a classe 'classe8blue'
+			$("#bt8-3").click(
+				function(e){
+					$(".8-1").addClass("classe8blue");
+				}
+			);
+			
+			//Removendo a classe 'classe8blue'
+			$("#bt8-4").click(
+				function(e){
+					$(".8-1").removeClass("classe8blue");
+				}
+			);
+			
+			//Alternando a classe 'classe8bold'
+			$("#bt8-5").click(
+				function(e){
+					$(".8-1").toggleClass("classe8bold");
+				}
+			);
+			
+			$("#jovem").click(
+				function(e){
+					alert($(".classe8red:first").html());
+				}
+			);
+		</script>
+	</body>
+</html>

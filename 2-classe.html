@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Exemplo HTML DOM</title>
+	</head>
+	<body>		
+		<h1 class="aluno">Olá Jovem</h1>
+		<h1 class="aluno">Olá outro Jovem</h1>
+		<h1 class="aluno">Olá mais um Jovem</h1>
+		<h1 class="aluno">Olá Jovem</h1>
+		<script>	
+			var selecao = document.getElementsByClassName("aluno");
+			alert(selecao);
+			for(var i=0; i<selecao.length;i++){
+				selecao[i].style.color = "red";
+				if(i % 2 === 0){
+					selecao[i].style.background = "black";
+				}
+			}
+		</script>
+	</body>
+</html>

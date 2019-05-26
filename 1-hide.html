@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			p{
+				background:cyan;
+				margin: 10px 0px;
+				padding: 20px 0px;
+			}
+			h1,h2,h3{
+				text-decoration:underline;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Efeitos</h2>
+		
+		<h3>Esconder e Mostrar</h3>
+		
+		<button id="efeito1">Clique no botão para esconder um parágrafo instantaneamente.</button><br />
+		<p id="efeito1par">Parágrafo #efeito1par.</p>
+		
+		<button id="efeito2">Clique no botão para esconder um parágrafo vagarosamente.</button><br />
+		<p id="efeito2par">Parágrafo #efeito2par.</p>
+		
+		<button id="efeito3">Clique no botão para mostrar um parágrafo rapidamente.</button><br />
+		<p id="efeito3par">Parágrafo #efeito3par.</p>
+		
+		<button id="efeito4">Clique no botão para <span id="efeito4aux">ESCONDER</span> um parágrafo em 2000ms</button><br />
+		<p id="efeito4par">Parágrafo #efeito4par.</p>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>
+			/*
+				Primeiro efeito: Esconder e mostrar(hide, show, toggle).
+				Realiza um efeito para esconder e mostrar qualquer elemento.
+			*/
+				//Esconder o elemento de id 'efeito1par' instantaneamente.
+				$("#efeito1").click(
+					function(e){
+						$("#efeito1par").hide(
+							function(){
+								alert("Elemento escondido.");
+							}
+						);
+					}
+				);
+				
+				//Esconder o elemento de id 'efeito2par' vagarosamente.
+				$("#efeito2").click(
+					function(e){
+						$("#efeito2par").hide("slow");
+					}
+				);
+				
+				//Escondendo o elemento de id 'efeito3par' para mostrá-lo com efeito
+				$("#efeito3par").css("display","none");
+				//Mostrar o elemento de id 'efeito3par' rapidamente.
+				$("#efeito3").click(
+					function(e){
+						$("#efeito3par").show(
+							"fast",
+							function(){
+								alert("Elemento mostrado.")
+							}
+						);
+					}
+				);
+				
+				//Mudar o estado de display do o elemento de id 'efeito4par' em 2000ms.
+				$("#efeito4").click(
+					function(e){
+						$("#efeito4par").toggle(
+							2000,
+							function(){
+								//Se o atributo CSS display for none, ou seja, se o elemento
+								//não estiver mostrado
+								if($(this).css("display") == "none"){
+									$("#efeito4aux").html("MOSTRAR");
+								}
+								//Se ele estiver mostrado
+								else{
+									$("#efeito4aux").html("ESCONDER");
+								}
+							}
+						);
+					}
+				);
+		</script>
+		
+	</body>
+</html>

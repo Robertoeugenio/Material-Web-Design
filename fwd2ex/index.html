@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			span{
+				color: red
+			}
+		</style>
+	</head>
+	<body>		
+		<form id="form">
+			<label for="nome">Nome:</label>
+			<input name="nome" />
+			<span></span><br />
+			<label for="cpf">CPF:</label>
+			<input name="cpf" />
+			<span></span><br />
+			<label for="admissao">Admissão:</label>
+			<input name="admissao" />
+			<span></span><br />
+			<label for="salario">Salário: R$</label>
+			<input name="salario" />
+			<span></span><br />
+			<input type="submit" value="Cadastrar" />
+		</form>
+		
+		<ol id="funcionarios">
+			
+		</ol>
+	
+		<script src="jquery-3.1.0.js"></script>
+		<script src="jquery.mask.js"></script>
+		<script>
+			$("#form input:eq(0)").mask(
+				"C",
+				{
+					translation: {
+						"C": {
+							pattern: /[A-Z\s]/i,
+							recursive: true
+						}
+					},
+					placeholder: "Somente letras e espaços"
+				}
+			);
+			
+			$("#form input:eq(1)").mask(
+				"000.000.000-00",
+				{
+					placeholder: "DDD.DDD.DDD-DD"
+				}
+			);
+			
+			$("#form input:eq(2)").mask(
+				"00/00/0000",
+				{
+					placeholder: "DD/MM/AAAA"
+				}
+			);
+			
+			$("#form input:eq(3)").mask(
+				"D00,00",
+				{
+					placeholder: "RRR,CC",
+					reverse: true,
+					translation: {
+						"D": {
+							pattern: /\d/,
+							recursive: true
+						}
+					},
+				}
+			);
+			
+			$("#form").submit(
+				verificaForm
+			);
+			
+			function animaAviso(aviso, msg){
+				aviso.hide(0);
+				aviso.text(msg);
+				aviso.fadeIn(1500);
+				aviso.animate({fontSize:"200%"}, 500);
+				aviso.animate({fontSize:"100%"}, 500);
+			}
+			
+			function verificaNome(nome){
+				var span = $("#form span:eq(0)");
+				var regex = /^[a-z\s]{2,}$/i;
+				
+				if(regex.test(nome)){
+					span.text("");
+					return true;
+				}
+				else{
+					animaAviso(span, "Nome inválido");
+					return false;
+				}
+			}
+			
+			function verificaCPF(cpf){
+				var span = $("#form span:eq(1)");
+				var regex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+				
+				if(regex.test(cpf)){
+					span.text("");
+					return true;
+				}
+				else{
+					animaAviso(span, "CPF inválido");
+					return false;
+				}
+			}
+			
+			function verificaAdmissao(admissao){
+				var span = $("#form span:eq(2)");
+				var regex = /^\d{2}\/\d{2}\/\d{4}$/;
+				
+				if(regex.test(admissao)){
+					span.text("");
+					return true;
+				}
+				else{
+					animaAviso(span, "Data inválida");
+					return false;
+				}
+			}
+			
+			function verificaSalario(salario){
+				var span = $("#form span:eq(3)");
+				var regex = /^\d{3,},\d{2}$/;
+				
+				if(regex.test(salario)){
+					span.text("");
+					var numsal = Number(salario.replace(/,/, "."));
+					if(numsal >= 937.0){
+						return true;
+					}
+					else{
+						animaAviso(span, "Salário deve ser ao menos R$937,00");
+						return false;
+					}	
+				}
+				else{
+					animaAviso(span, "Salário inválido");
+					return false;
+				}
+			}
+			
+			function verificaForm(){
+				var nome = $("#form input:eq(0)").val();
+				var cpf = $("#form input:eq(1)").val();
+				var admissao = $("#form input:eq(2)").val();
+				var salario = $("#form input:eq(3)").val();
+				
+				var testenome = verificaNome(nome);
+				var testecpf = verificaCPF(cpf);
+				var testeadmissao = verificaAdmissao(admissao);
+				var testesalario = verificaSalario(salario);
+				
+				if(testenome && testecpf && testeadmissao && testesalario){
+					cadastraFuncionario(nome, cpf, admissao, salario);
+				}
+				
+				return false;
+			}
+			
+			function cadastraFuncionario(nome, cpf, admissao, salario){
+				var existe = false;
+				$("#funcionarios ul").each(
+					function(i){
+						var cpfatual = $(this).find("li:first").text();
+						if(cpfatual == cpf){
+							existe = true;
+							alteraCadastro(i, nome, cpf, admissao, salario);
+							return false; //Break no each
+						}
+					}
+				)
+				
+				if(!existe){
+					insereCadastro(nome, cpf, admissao, salario);
+				}
+			}
+			
+			function insereCadastro(nome, cpf, admissao, salario){
+				$("#funcionarios").append("<li>" + nome + "</li>");
+				$("#funcionarios li:last").addClass("jovem");
+				$("#funcionarios .jovem:last").hide(0);
+				$("#funcionarios li:last").append("<ul><li>" + cpf + "</li><li>" + admissao + "</li><li>R$" + salario + "</li></ul>");
+				$("#funcionarios .jovem:last").show(1000);
+				$("#funcionarios .jovem:last").dblclick(infoForm);
+			}
+			
+			function alteraCadastro(indice, nome, cpf, admissao, salario){
+				$("#funcionarios .jovem:eq(" + indice + ")").slideUp(500, 
+					function(){
+						$(this).html(nome + "<ul><li>" + cpf + "</li><li>" + admissao + "</li><li>R$" + salario + "</li></ul>");
+						$(this).slideDown(500);
+					}
+				);
+			}
+			
+			function infoForm(){
+				var confirma = confirm("Substituir as informações no formulário?");
+				
+				if(confirma){
+					var htmlnome = $(this).html();
+					var nome = htmlnome.split(/<ul>/)[0];
+					var cpf = $(this).find("li:eq(0)").text();
+					var admissao = $(this).find("li:eq(1)").text();;
+					var salario = $(this).find("li:eq(2)").text();;
+					
+					$("#form input:eq(0)").val(nome);
+					$("#form input:eq(1)").val(cpf);
+					$("#form input:eq(2)").val(admissao);
+					$("#form input:eq(3)").val(salario);
+				}
+			}
+		</script>
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

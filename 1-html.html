@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Manipulação de código HTML</title>
+	</head>
+	<body>
+		<h1>Manipulação de código HTML</h1>
+		
+		<h3>Manipulação com clique</h3>
+		
+		<button id="bt1">Clique para alterar o HTML</button>
+		<p id="ex1">Texto HTML inicial. Clique no botão acima para me alterar.</p>
+		
+		<hr />
+		
+		<h3>Manipulação com mouse over</h3>
+		
+		<p>Coloque o mouse sobre os elementos da lista</p>
+		
+		<p>Resultado: <b><span id="res2"></span></b></p>
+		<ul id="ex2">
+			<li>Opção 1</li>
+			<li>Opção 2</li>
+			<li>Opção 3</li>
+			<li>Opção 4</li>
+			<li>Opção 5</li>
+		</ul>
+		
+		<hr />
+		
+		<h3>Acrescentando informação com manipulação do código HTML</h3>
+		
+		<p>Somente para esclarecimento. Utilize os manipuladores corretos para um melhor resultado.</p>
+		
+		<button id="bt3">Clique para adicionar item</button>
+		<ol id="ex3">
+			<li>Item</li>
+		</ol>
+		
+		<script>
+			//=======================================================================
+			//Alterar HTML do elemento de id ex1
+			document.getElementById("bt1").onclick = function(){
+				document.getElementById("ex1").innerHTML = "HTML alterado";
+			}
+			//=======================================================================
+			//Usando o HTML de um elemento para alterar o outro
+			var elementos2 = document.querySelectorAll("#ex2 li")
+			
+			for(var i=0;i<elementos2.length;i++){
+				elementos2[i].onmouseover = function(){
+					document.getElementById("res2").innerHTML = this.innerHTML;
+				}
+			}
+			//=======================================================================
+			//Modificando o valor de um elemento HTML para acrescentar mais informação
+			document.getElementById("bt3").onclick = function(){
+				var conteudo = document.getElementById("ex3").innerHTML;
+				document.getElementById("ex3").innerHTML = conteudo + "<li>Item</li>";
+			}
+			
+			//=======================================================================
+		</script>
+	</body>
+</html>

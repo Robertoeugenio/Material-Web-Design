@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Eventos input e change - Manipuladores oninput e onchange</title>
+	</head>
+	<body>		
+		<h1>Eventos input e change - Manipuladores oninput e onchange</h1>
+		
+		Digite no campo: <input id="tx1" type="text" /><br />
+		Resultado: <span id="restx1"></span>
+		
+		<hr />
+		
+		Digite no campo e clique fora dele: <input id="tx2" type="text" /><br />
+		Resultado: <span id="restx2"></span>
+		
+		<hr />
+		
+		Modifique o elemento selecionado no select:
+		<select id="sel1">
+			<option value="1">Opção 1</option>
+			<option value="2">Opção 2</option>
+			<option value="3">Opção 3</option>
+			<option value="4">Opção 4</option>
+		</select>
+		Resultado: <span id="ressel1"></span>
+		
+		<hr />		
+		
+		Mude o checkbox: 
+		<input id="chb1" type="checkbox" value="sim" />Concorda?<br />
+		<span id="reschb1">Você NÃO concordou com os termos.</span>
+		<hr />
+		
+		Qual lanche desejas:
+		<input class="rd1" type="radio" value="1" name="rd" checked="checked"/>X-Tudo 
+		<input class="rd1" type="radio" value="2" name="rd"/>Beirute
+		<input class="rd1" type="radio" value="3" name="rd"/>Coxinha <br />
+		Resultado: Será pedido <span id="resrd1">X-Tudo</span>
+		<script>
+			//=======================================================================
+			//TRATANDO EVENTO INPUT NO TEXTBOX DE ID TX1		
+			document.getElementById("tx1").oninput = function(){
+				document.getElementById("restx1").innerHTML = this.value;
+			}
+			//=======================================================================
+			//TRATANDO EVENTO CHANGE NO TEXTBOX DE ID TX2		
+			document.getElementById("tx2").onchange = function(){
+				document.getElementById("restx2").innerHTML = this.value;
+			}
+			//=======================================================================			
+			//TRATANDO EVENTO INPUT NO SELECT DE ID SEL1
+			document.getElementById("sel1").onchange = function(){
+				document.getElementById("ressel1").innerHTML = this.value;
+			}
+			//=======================================================================			
+			//TRATANDO EVENTO INPUT NO CHECKBOX DE ID CHB1
+			document.getElementById("chb1").onchange = function(){
+				var spanres = document.getElementById("reschb1");
+				if(this.checked){
+					spanres.innerHTML = "Você CONCORDOU com os termos."
+				}
+				else{
+					spanres.innerHTML = "Você NÃO concordou com os termos."
+				}
+			}
+			//=======================================================================			
+			//TRATANDO EVENTO INPUT NO CHECKBOX DE ID CHB1
+			function selLanche(num){				
+				if(num === "1"){
+					return "X-Tudo";
+				}
+				else if(num === "2"){
+					return "Beirute";
+				}
+				else{
+					return "Coxinha";
+				}
+			}
+					
+			var radios = document.querySelectorAll(".rd1");
+			
+			for(var i=0;i<radios.length;i++){
+				radios[i].onchange = function(){
+					document.getElementById("resrd1").innerHTML = selLanche(this.value);
+				}
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

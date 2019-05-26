@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Exemplo de Formulário Completo</title>
+		<style>
+			span{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Preencha o Formulário</h1>
+		
+		<h3>Agenda Telefônica</h3>
+		<form name="form1" novalidate="novalidate">
+			<label for="nome">Nome:</label>
+			<input type="text" name="nome" required="required" minlength="3" placeholder="Obrigatório" /> 
+			<span id="errnome"></span>
+			<br />
+			<label for="tel">Telefone:</label>
+			<input type="number" name="tel" required="required" minlength="10" maxlength="11" step="1" placeholder="XXXXXXXXXX" />
+			<span id="errtel"></span>
+			<br />
+			<input type="submit" value="Cadastrar" />
+		</form>
+		
+		
+		<script>
+			function validaNome(elemento){
+				var span = document.getElementById("errnome");
+				if(elemento.checkValidity()){
+					span.innerHTML = "";
+				}
+				else{
+					if(elemento.validity.valueMissing){
+						span.innerHTML = "Preencha o nome.";
+					}
+					else if(elemento.validity.tooShort){
+						span.innerHTML = "Nome deve possuir ao menos 3 caracteres.";
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do nome.";
+					}
+				}
+			}
+			
+			function validaTamTel(valor){
+				var str = String(valor);
+				var tam = str.length;
+				
+				if(tam >= 10 && tam <= 11){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			
+			function validaTel(elemento){
+				var span = document.getElementById("errtel");
+				var checktam = validaTamTel(elemento.value)
+				
+				if(checktam && elemento.checkValidity()){
+					span.innerHTML = "";
+				}
+				else{
+					if(elemento.validity.badInput){
+						span.innerHTML = "O telefone deve conter somente números.";
+					}
+					else if(elemento.validity.valueMissing){
+						span.innerHTML = "Preencha o telefone.";
+					}
+					else if(checktam === false){
+						span.innerHTML = "O telefone deve conter entre 10 e 11 números.";
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do telefone.";
+					}
+				}
+			}
+			
+			document.forms["form1"]["nome"].onblur = function(){
+				validaNome(this);
+			}
+			
+			document.forms["form1"]["tel"].onblur = function(){
+				validaTel(this);
+			};
+			
+			document.forms["form1"].onsubmit = function(){
+				if(this.checkValidity()){
+					return true;
+				}
+				else{
+					validaNome(this["nome"]);
+					validaTel(this["tel"]);
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

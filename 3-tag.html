@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Exemplo HTML DOM</title>
+	</head>
+	<body>		
+		<h1>Título 1</h1>
+		<h2>Subtítulo</h2>
+		<p>Aqui estará um belo texto</p>
+		<p>Aqui estará outro belo texto</p>
+		<h2>Mais um subtítulo</h2>
+		<p>Outro belo texto, muito profundo por sinal</p>
+		<p>E aqui uma conclusão fenomenal, que diz: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Fantástica obra prima da literatura moderna</p>
+		<script>	
+			var selh1 = document.getElementsByTagName("h1");
+			for(var i=0; i<selh1.length;i++){
+				selh1[i].style.textDecoration = "underline";
+			}
+			
+			var selh2 = document.getElementsByTagName("h2");
+			for(var i=0; i<selh2.length;i++){
+				selh2[i].style.color = "blue";
+				selh2[i].style.textDecoration = "underline";
+			}
+			
+			var selp = document.getElementsByTagName("p");
+			for(var i=0; i<selp.length;i++){
+				selp[i].style.color = "red";
+			}
+		</script>
+	</body>
+</html>

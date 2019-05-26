@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Manipulando CSS</h1>
+		
+		<button id="bt7-1">Clique para recuperar a cor de um elemento.</button><br />
+		<button id="bt7-2">Clique para alterar a cor de um elemento.</button><br />
+		<button id="bt7-3">Clique para alterar a cor de fundo e tamanho da fonte de um elemento.</button><br />
+		
+		<p id="7-1" style="color:red">Parágrafo qualquer...</p>
+		
+		<button id="bt7-4">Clique para recuperar a cor dos elementos da lista.</button><br />
+		<button id="bt7-4-1">Clique para recuperar a cor dos elementos da lista com each.</button><br />
+		<button id="bt7-5">Clique para alterar o CSS dos elementos da lista.</button><br />
+		
+		<ol id="7-2">
+			<li style="color:blue">Elemento 1</li>
+			<li style="color:red">Elemento 2</li>
+			<li style="color:green">Elemento 3</li>
+			<li style="color:magenta">Elemento 4</li>
+		</ol>		
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>			
+			//Recuperando a cor de um elemento
+			$("#bt7-1").click(
+				function(e){
+					alert($("#7-1").css("color"));
+				}
+			);
+			
+			//Alterando a cor de um elemento
+			$("#bt7-2").click(
+				function(e){
+					$("#7-1").css("color","blue");
+				}
+			);
+			
+			//Alterando o tamanho da fonte e a cor de fundo de um elemento
+			$("#bt7-3").click(
+				function(e){
+					$("#7-1").css({"background":"yellow", "font-size":"30px"});
+				}
+			);
+			
+			//Recuperando a cor de um elemento
+			$("#bt7-4").click(
+				function(e){
+					alert($("#7-2 li").css("color"));
+				}
+			);
+			
+			//Recuperando a de diversos elementos com each
+			$("#bt7-4-1").click(
+				function(e){
+					$("#7-2 li").each(
+						function(i){
+							alert("Índice " + i + " = " + $(this).css("color"));
+						}
+					);
+				}
+			);
+			
+			//Alterando atributos CSS de muitos elementos de uma vez
+			$("#bt7-5").click(
+				function(e){
+					$("#7-2").css({"background":"yellow"});
+					$("#7-2 li").css({"background":"cyan", "color":"red", "margin":"10px 0px"});
+				}
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Eventos mouseenter e mouseleave - Manipuladores onmouseenter e onmouseleave</title>
+	</head>
+	<body>		
+		<h1>Eventos mouseenter e mouseleave - Manipuladores onmouseenter e onmouseleave</h1>
+		
+		<button id="will1">Coloque o mouse sobre mim</button><br /><br />
+		
+		<hr />
+		
+		<button id="will2">Retire o mouse de cima de mim</button>
+		
+		<hr />
+		
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		<p class="iftm">Coloque e retire o mouse de mim</p>
+		
+		<script>
+			//=======================================================================
+			//TRATANDO EVENTO MOUSEENTER NO ELEMENTO DE ID WILL1		
+			function funcIdWill1(){
+				alert("Mouse sobre o elemento id will1");
+			}
+			
+			document.getElementById("will1").onmouseenter = funcIdWill1;
+			//=======================================================================
+			//TRATANDO EVENTO MOUSELEAVE NO ELEMENTO DE ID WILL2		
+			document.getElementById("will2").onmouseleave = function(){
+				alert("Mouse saiu do elemento id will2");
+			}
+			//=======================================================================			
+			//TRATANDO EVENTO MOUSEENTER E MOUSELEAVE NOS ELEMENTOS DA CLASSE IFTM
+			function funcEnter(){
+				this.style.background = "red";
+			}
+			
+			function funcLeave(){
+				this.style.background = "green";
+			}
+			
+			var seliftm = document.querySelectorAll(".iftm");
+			for(var i=0;i<seliftm.length;i++){
+				seliftm[i].onmouseenter = funcEnter;
+				seliftm[i].onmouseleave = funcLeave;
+			}
+			//=======================================================================
+		</script>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Valor - 'value'</h1>
+		
+		<button id="bt4-1">Clique para recuperar o valor.</button><br />
+		<button id="bt4-2">Clique para alterar o valor.</button><br /><br />
+		
+		<input id="4-1" type="text" value="Will Roger" /><br /><br />
+		
+		<button id="bt4-3">Clique para recuperar o valor.</button><br />
+		<button id="bt4-3-1">Clique para recuperar o valor com each.</button><br />
+		<button id="bt4-4">Clique para alterar o valor.</button><br /><br />
+		
+		<input class="4-2" type="text" value="Texto 1" /><br />
+		<input class="4-2" type="text" value="Texto 2" /><br />
+		<input class="4-2" type="text" value="Texto 3" /><br />		
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//Recuperando o valor de um elemento
+			$("#bt4-1").click(
+				function(e){
+					alert($("#4-1").val());
+				}
+			);
+			
+			//Alterando o valor de um elemento
+			$("#bt4-2").click(
+				function(e){
+					$("#4-1").val("IFTM");
+				}
+			);
+			
+			//Recuperando o valor de diversos elementos
+			$("#bt4-3").click(
+				function(e){
+					alert($(".4-2").val());
+				}
+			);
+			
+			//Recuperando valor de diversos elementos com each
+			$("#bt4-3-1").click(
+				function(e){
+					$(".4-2").each(
+						function(i){
+							alert("Índice " + i + " = " + $(this).val());
+						}
+					);
+				}
+			);
+			
+			//Alterando o valor de diversos elementos
+			$("#bt4-4").click(
+				function(e){
+					$(".4-2").val("IFTM");
+				}
+			);
+		</script>
+	</body>
+</html>

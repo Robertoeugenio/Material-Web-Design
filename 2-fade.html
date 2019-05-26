@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			p{
+				background:cyan;
+				margin: 10px 0px;
+				padding: 20px 0px;
+			}
+			h1,h2,h3{
+				text-decoration:underline;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Efeitos</h2>
+		
+		<h3>Fade</h3>
+		
+		<button id="efeito5">Clique no botão para deixar um parágrafo transparente.</button><br />
+		<p id="efeito5par">Parágrafo #efeito5par.</p>
+		
+		<button id="efeito6">Clique no botão para deixar um parágrafo opaco.</button><br />
+		<p id="efeito6par">Parágrafo #efeito6par.</p>
+		
+		<button id="efeito7">Clique no botão para mudar a 'opacity' de um parágrafo para 0.3.</button><br />
+		<p id="efeito7par">Parágrafo #efeito7par.</p>
+		
+		<button id="efeito8">Clique no botão para deixar <span id="efeito8aux">TRANSPARENTE</span> um parágrafo</button><br />
+		<p id="efeito8par">Parágrafo #efeito8par.</p>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>
+			/*
+				Segundo efeito: Fade (fadeIn, fadeOut, fadeToggle e fadeTo)
+				Realiza um efeito mudando a opacidade de um elemento.
+			*/
+				//Esconder o elemento de id 'efeito5par' com efeito de transparencia.
+				$("#efeito5").click(
+					function(e){
+						$("#efeito5par").fadeOut(
+							1000,
+							function(){
+								alert("Elemento transparente.")
+							}
+						);
+					}
+				);
+				
+				//Escondendo o elemento de id 'efeito6par' para mostrá-lo com efeito.
+					$("#efeito6par").css("display","none");
+				//Mostrar o elemento de id 'efeito6par' com efeito de transparência.
+				$("#efeito6").click(
+					function(e){
+						$("#efeito6par").fadeIn(
+							1000,
+							function(){
+								alert("Elemento opaco.")
+							}
+						);
+					}
+				);
+				
+				//Mudar a transparência do elemento de id 'efeito7par'.
+				/*
+					Um elemento que tem sua transparência mudada, tem em seus argumentos
+						um argumento adicionado. O fator de transparência é um dos argumentos.
+						
+					- seletor.fadeTo([velocidade],fatordetransparencia,[callback]);
+				*/
+				$("#efeito7").click(
+					function(e){
+						$("#efeito7par").fadeTo(
+							1000,
+							0.3,
+							function(){
+								alert("Nova transparência: " + $(this).css("opacity"));
+							}
+						);
+					}
+				);
+				
+				//Mudar o estado de display do o elemento de id 'efeito8par'.
+				$("#efeito8").click(
+					function(e){
+						$("#efeito8par").fadeToggle(
+							1000,
+							function(){
+								//Se o atributo CSS display for none, ou seja, se o elemento
+								//não estiver mostrado
+								if($(this).css("display") == "none"){
+									$("#efeito8aux").html("OPACO");
+								}
+								//Se ele estiver mostrado
+								else{
+									$("#efeito8aux").html("TRANSPARENTE");
+								}
+							}
+						);
+					}
+				);
+		</script>
+	</body>
+</html>

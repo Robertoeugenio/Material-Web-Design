@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Evento dblclick</h1>
+		
+		<p id="will">Clique 2x em mim - id will</p>
+		
+		<p class="iftm">Clique 2x em mim - classe iftm</p>
+		<p class="iftm">Clique 2x em mim - classe iftm</p>
+		<p class="iftm">Clique 2x em mim - classe iftm</p>
+		
+		<button>Clique 2x, sou um botão</button><br />
+		<button>Clique 2x, sou um botão</button><br />
+		<button>Clique 2x, sou um botão</button><br />
+		<button>Clique 2x, sou um botão</button><br />
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//O evento dblclick é disparado quando o elemento recebe
+			//um duplo clique.
+				
+			//Evento dblclick anexado ao elemento de id will
+			$("#will").dblclick(function(){
+				alert("Evento dblclick disparado.");
+			});
+			
+			//Evento dblclick anexado aos elementos da classe iftm
+			$(".iftm").dblclick(function(){
+				$(this).css("background","lime");
+			});
+			
+			//Evento click anexado aos elementos de tipo button
+			$("button").dblclick(function(){
+				alert("Botão clicado 2x!!");
+				$("button").css("color","red");
+			});
+		</script>
+	</body>
+</html>

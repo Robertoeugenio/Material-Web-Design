@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Exemplo HTML DOM</title>
+	</head>
+	<body>		
+		<h1>Título 1</h1>
+		<h2>Subtítulo 1</h2>
+		<div>
+			<p class="belo">Aqui estará um belo texto</p>
+			<p>Aqui estará outro belo texto</p>
+		</div>
+		<h2>Subtítulo 2</h2>
+		<p class="belo">Outro belo texto, muito profundo por sinal</p>
+		<p id="conclusao">E aqui uma conclusão fenomenal, que diz: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Fantástica obra prima da literatura moderna</p>
+		<script>	
+			var sel1 = document.querySelectorAll("h1");
+			for(var i=0; i<sel1.length;i++){
+				sel1[i].style.color = "orange";
+			}
+			
+			var sel2 = document.querySelectorAll(".belo");
+			for(var i=0; i<sel2.length;i++){
+				sel2[i].style.background = "red";
+			}
+			
+			var sel3 = document.querySelectorAll("#conclusao");
+			for(var i=0; i<sel3.length;i++){
+				sel3[i].style.background = "gray";
+			}
+			
+			var sel4 = document.querySelectorAll("h2");
+			for(var i=0; i<sel4.length;i++){
+				sel4[i].style.textDecoration = "underline";
+			}
+			
+			var sel5 = document.querySelectorAll("#conclusao, h2");
+			for(var i=0; i<sel5.length;i++){
+				sel5[i].style.color = "blue";
+			}
+			
+			var sel6 = document.querySelectorAll("div p");
+			for(var i=0; i<sel6.length;i++){
+				sel6[i].style.color = "magenta";
+			}
+			
+			var sel7 = document.querySelectorAll("p:last-of-type");
+			for(var i=0; i<sel7.length;i++){
+				sel7[i].style.fontWeight = "bold";
+			}
+		</script>
+	</body>
+</html>

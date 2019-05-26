@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Evento click</h1>
+		
+		<p id="will">Clique em mim - id will</p>
+		
+		<p class="iftm">Clique em mim - classe iftm</p>
+		<p class="iftm">Clique em mim - classe iftm</p>
+		<p class="iftm">Clique em mim - classe iftm</p>
+		
+		<button>Clique, sou um botão</button><br />
+		<button>Clique, sou um botão</button><br />
+		<button>Clique, sou um botão</button><br />
+		<button>Clique, sou um botão</button><br />
+		
+		<table>
+			<th>Alunos</th>
+			<tr>
+				<td>Anna</td>
+			</tr>
+			<tr>
+				<td>Leandro</td>
+			</tr>
+			<tr>
+				<td>Lityeh</td>
+			</tr>
+			<tr>
+				<td>Marcel</td>
+			</tr>
+		</table>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>			
+			//O evento click é disparado quando o elemento recebe um clique.
+				
+			//Evento click anexado ao elemento de id will
+			$("#will").click(function(){
+				alert("Evento click disparado.");
+			});
+				
+			//Evento click anexado aos elementos da classe iftm
+			$(".iftm").click(function(){
+				$(this).css("background","lime");
+			});
+			
+			//Evento click anexado aos elementos de tipo button
+			$("button").click(function(){
+				alert("Botão clicado!!");
+				$("button").css("color","red");
+			});
+			
+			$("table tr").click(function(){
+				$("table tr").css("color", "black");
+				$(this).css("color", "red");
+			});
+		</script>
+	</body>
+</html>
+
+
+
+
+
+

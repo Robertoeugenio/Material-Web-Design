@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			.modal{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				left: 45%;
+				top: 30%;
+				background-color: cyan;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="modal" class="modal">
+			<button id="btlogin">Login</button>
+		</div>
+		<span id="texto"></span>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>
+				$("#btlogin").click(
+					function(e){
+						$("#btlogin").hide();
+						$(".modal").animate(
+							{width:"100%", height: "100%", left: 0, top: 0},
+							1000,
+							function(){
+								$("#texto").text("BEM-VINDO JOVEM.");
+								$("body").css("background-color", "cyan");
+								$(".modal").fadeOut(500);
+							}
+						);
+					}
+				);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Eventos mousedown e mouseup</h1>
+		
+		<button id="will1">Pressione o botão do mouse sobre mim</button><br /><br />
+		
+		<button id="will2">Solte o botão do mouse sobre mim</button><br /><br />
+		
+		<p class="iftm">Pressione/solte o botão do mouse sobre mim</p>
+		<p class="iftm">Pressione/solte o botão do mouse sobre mim</p>
+		<p class="iftm">Pressione/solte o botão do mouse sobre mim</p>
+		<p class="iftm">Pressione/solte o botão do mouse sobre mim</p>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>	
+			//O evento mousedown é disparado quando o botão do
+			//mouse é pressionado sobre o elemento
+			
+			//O evento mouseup é disparado quando o botão do
+			//mouse é solto sobre o elemento
+			
+			$("#will1").mousedown(function(){
+				alert("Evento mousedown disparado.");
+			});
+			
+			$("#will2").mouseup(function(){
+				alert("Evento mouseup disparado.");
+			});
+			
+			$(".iftm").mousedown(function(){
+				$(this).css("background","lime");
+			});
+			
+			$(".iftm").mouseup(function(){
+				$(this).css("background","cyan");
+			});
+		</script>
+	</body>
+</html>

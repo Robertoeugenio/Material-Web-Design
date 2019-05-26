@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Ação para cada elemento - Each</h1>
+		
+		<button id="bt2-1">Clique para simular o each.</button><br />
+		
+		<p class="2-1">Parágrafo 1</p>
+		<p class="2-1">Parágrafo 2</p>
+		<p class="2-1">Parágrafo 3</p>
+		
+		<button id="bt2-2">Clique modificar o texto de todos.</button><br />
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>	
+			$("#bt2-1").click(
+				function(e){
+					$(".2-1").each(
+						function(i){
+							alert("Índice " + i + " encontrado. Texto: " + $(this).text());
+						}
+					);
+				}
+			)
+			
+			$("#bt2-2").click(
+				function(e){
+					$("p").text("Parágrafo Modificado.");
+				}
+			)
+		</script>
+	</body>
+</html>

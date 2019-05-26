@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			p{
+				background:cyan;
+				margin: 10px 0px;
+				padding: 20px 0px;
+			}
+			h1,h2,h3{
+				text-decoration:underline;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Efeitos</h2>
+		
+		<h2>Animações<h2>
+		
+		<button id="ani1">Clique no botão para animar o parágrafo 1.</button><br />
+		<p id="ani1par">Parágrafo 1</p>
+		
+		<button id="ani2">Clique no botão para animar o parágrafo 2.</button><br />
+		<p id="ani2par">Parágrafo 2</p>
+		
+		<button id="ani3">Clique no botão para animar o parágrafo 3.</button><br />
+		<p id="ani3par">Parágrafo 3</p>
+		
+		<button id="ani4">Clique no botão para animar o parágrafo 4.</button><br />
+		<p id="ani4par">Parágrafo 4</p>
+		
+		<button id="ani5">Clique no botão para animar o parágrafo 5.</button><br />
+		<button id="ani5stop">Clique para parar a animação.</button><br />
+		<p id="ani5par">Parágrafo 5</p>	
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>
+			/*
+				Primeira animação: Mudando o tamanho da fonte de um parágrafo.
+			*/
+				$("#ani1").click(
+					function(e){
+						$("#ani1par").animate(
+							{fontSize:"40px"},
+							1000
+						);
+					}
+				);
+			
+			/*
+				Segunda animação: Concatenando animações.
+				Para concatenar animações, basta colocar uma após a outra.
+			*/
+				$("#ani2").click(
+					function(e){
+						$("#ani2par").animate(
+							{letterSpacing:"10px"},
+							1000
+						);
+						$("#ani2par").animate(
+							{width:"250px"},
+							2000,
+							"swing"
+						);
+					}
+				);
+				
+			/*
+				Terceira animação: Mudando mais de uma propriedade ao mesmo tempo.
+				Siga a sintaxe
+			*/
+				$("#ani3").click(
+					function(e){
+						$("#ani3par").animate(
+							{letterSpacing:"10px",fontSize:"40px",width:"400px"},
+							3000
+						);
+					}
+				);
+				
+			/*
+				Quarta animação: Valores relativos.
+				É possível utilizar operadores relativos: +=, -=.
+				Eles somam ou subtraem
+			*/
+				//Mudando a propriedade 'position' para relative para poder mudar
+				$("#ani4par").css("position","relative");
+				
+				$("#ani4").click(
+					function(e){
+						$("#ani4par").animate(
+							{width:"-=700px"},
+							1000
+						);
+						$("#ani4par").animate(
+							{left:"+=300px"},
+							1000
+						);
+					}
+				);
+			
+			/*
+				Quinta animação: Parando a animação.
+				Utilize o método stop.
+				Sintaxe: seletor.stop([PararTodas], [Completar])
+					- PararTodas: valor booleano. Define se todas as animações
+						concatenadas devem parar também. Padrão: false.
+					
+					- Completar: valor booleano. Define se a animação deve ser
+						completada ou fica parada onde está. Padrão: false.
+				
+				OBS: FUNCIONA TAMBÉM PARA OS EFEITOS
+			*/
+				$("#ani5").click(
+					function(e){
+						$("#ani5par").animate(
+							{width:"300px"},
+							5000
+						);
+					}
+				);
+				
+				$("#ani5stop").click(
+					function(e){
+						$("#ani5par").stop();
+					}
+				);
+		</script>
+	</body>
+</html>

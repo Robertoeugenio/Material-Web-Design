@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Exemplo Navegação HTML DOM</title>
+	</head>
+	<body>
+		<div>
+			Div pai
+			<br />
+			<span id="exemplo1">Vou mudar a cor de fundo da div pai</span>
+		</div>
+		<hr />
+		A cor dos filhos da lista serão mudadas com a referência dela
+		<ul id="exemplo2">
+			<li>Filho 1</li>
+			<li>Filho 2</li>
+			<li>Filho 3</li>
+			<li>Filho 4</li>
+		</ul>
+		<hr />
+		A cor do primeiro e último filhos da lista serão mudadas com a referência dela
+		<ul id="exemplo3">
+			<li>Filho 1</li>
+			<li>Filho 2</li>
+			<li>Filho 3</li>
+			<li>Filho 4</li>
+		</ul>
+		<hr />
+		<ol>
+			<li id="exemplo4">A cor do meu posterior será mudada</li>
+			<li>Irmão 1</li>
+			<li>Irmão 2</li>
+			<li>Irmão 3</li>
+		</ol>
+		<hr />
+		<ol>
+			<li>Irmão 1</li>
+			<li>Irmão 2</li>
+			<li>Irmão 3</li>
+			<li id="exemplo5">A cor do meu anterior será mudada</li>
+		</ol>
+		
+		<script>	
+			//Exemplo 1 - Referência relativa de elemento pai
+			document.getElementById("exemplo1").style.background = "green";
+			document.getElementById("exemplo1").parentElement.style.background = "red";
+			
+			//Exemplo 2 - Referência relativa de elementos filhos
+			var ex2filhos = document.getElementById("exemplo2").children;
+			for(var i=0;i<ex2filhos.length;i++){
+				ex2filhos[i].style.color = "red";
+			}
+			
+			//Exemplo 3 - Referência relativa de primeiro e último elementos filhos
+			document.getElementById("exemplo3").firstElementChild.style.background = "green";
+			document.getElementById("exemplo3").lastElementChild.style.background = "orange";
+			
+			//Exemplo 4 - Referência relativa de elemento irmão posterior
+			document.getElementById("exemplo4").nextElementSibling.style.background = "purple";
+			
+			//Exemplo 5 - Referência relativa de elemento irmão anterior
+			document.getElementById("exemplo5").previousElementSibling.style.background = "cyan";
+			
+			
+		</script>
+	</body>
+</html>

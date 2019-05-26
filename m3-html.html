@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Manipulando HTML</h1>
+		
+		<button id="bt3-1">Clique para recuperar o HTML.</button><br />
+		<button id="bt3-2">Clique para alterar o HTML.</button><br />
+		
+		<p id="3-1"><b>HTML</b> aleatório...</p>
+		
+		<button id="bt3-3">Clique para recuperar o HTML de todos sem each.</button><br />
+		<button id="bt3-3-1">Clique para recuperar o HTML de todos com each.</button><br />
+		<button id="bt3-4">Clique para alterar o HTML de todos.</button><br />
+		
+		<p class="3-2">HTML <b>1</b></p>
+		<p class="3-2">HTML <b>2</b></p>
+		<p class="3-2">HTML <b>3</b></p>
+		
+		<button id="bt3-5">Clique para recuperar o texto da ul.</button><br />
+		<button id="bt3-6">Clique para alterar o texto da ul.</button><br />
+		<ul class="3-3">
+			<li>li 1</li>
+			<li>li 2</li>
+			<li>li 3</li>
+		</ul>
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>		
+			//Recuperando código de um elemento
+			$("#bt3-1").click(
+				function(e){
+					alert($("#3-1").html());
+				}
+			);
+			
+			//Alterando código de um elemento
+			$("#bt3-2").click(
+				function(e){
+					$("#3-1").html("Tags <b>HTML</b> são consideradas");
+				}
+			);
+			
+			//Recuperando código de diversos elementos sem each
+			$("#bt3-3").click(
+				function(e){
+					alert($(".3-2").html());
+				}
+			);
+			
+			//Recuperando código de diversos elementos com each
+			$("#bt3-3-1").click(
+				function(e){
+					$(".3-2").each(
+						function(i){
+							alert("Índice " + i + " = " + $(this).html());
+						}
+					);
+				}
+			);
+			
+			//Alterando código de diversos elementos
+			$("#bt3-4").click(
+				function(e){
+					$(".3-2").html("Todos os <b>códigos</b> são recuperados/mudados.");
+				}
+			);
+			
+			/*Cuidado ao manipular elementos que contenham outros elementos
+				Recuperar o texto considerará as tags HTML.
+				Alterar o texto permitirá adição de tags HTML.
+			*/
+			//Recuperando código da ul
+			$("#bt3-5").click(
+				function(e){
+					alert($(".3-3").html());
+				}
+			);
+			
+			
+			//Alterando código da ul
+			$("#bt3-6").click(
+				function(e){
+					$(".3-3").html("<li>Constrói novos li</li><li>Outro li</li>");
+				}
+			);
+		</script>
+	</body>
+</html>

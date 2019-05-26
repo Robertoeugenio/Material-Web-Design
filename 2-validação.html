@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Validação de Formulários</title>
+		<style>
+			span{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Validação de Formulários</h1>
+		
+		<h3>0- Formulário não tratado com JS</h3>
+		<form>
+			<label for="sorte">Número da sorte:</label>
+			<input type="number" name="sorte" required="required" placeholder="Qualquer número" />
+			<input type="submit" value="Estou com sorte" />
+		</form>
+		
+		<h3>1- Formulário com required</h3>
+		<form name="form1" novalidate="novalidate">
+			<label for="cliente">Cliente:</label>
+			<input type="text" name="cliente" required="required" placeholder="Obrigatório" />
+			<label for="produto">Produto:</label>
+			<input type="text" name="produto" required="required" placeholder="Obrigatório" />
+			<input type="submit" value="Vender" />
+			<span id="span1"></span>
+		</form>
+		
+		<h3>2- Formulário com min e max</h3>
+		<form name="form2" novalidate="novalidate">
+			<label for="idade">Idade do trabalhador:</label>
+			<input type="number" name="idade" min="18" max="69" placeholder="Entre 18 e 69" />
+			<input type="submit" value="Cadastrar" />
+			<span id="span2"></span>
+		</form>
+		
+		<h3>3- Formulário com step</h3>
+		<form name="form3" novalidate="novalidate">
+			<label for="numero">Número par:</label>
+			<input type="number" name="numero" min="0" step="2" placeholder="E.g. 2" />
+			<input type="submit" value="Inserir" />
+			<span id="span3"></span>
+		</form>
+		
+		<h3>4- Formulário com minlength e maxlength</h3>
+		<form name="form4" novalidate="novalidate">
+			<label for="usuario">Usuário:</label>
+			<input type="text" name="usuario" required="required" minlength="3" />
+			<label for="senha">Senha:</label>
+			<input type="password" name="senha" required="required" minlength="8" maxlength="10" />
+			<input type="submit" value="Cadastrar" />
+			<span id="span4"></span>
+		</form>
+		
+		<h3>5- Formulário com type</h3>
+		<form name="form5" novalidate="novalidate">
+			<label for="email">E-mail:</label>
+			<input type="email" name="email" required="required" />
+			<input type="submit" value="Inscrever" />
+			<span id="span5"></span>
+		</form>
+		
+		<script>
+			//-------------------------------------------------------------
+			//FORM 1
+			document.forms["form1"].onsubmit = function(){
+				if(this.checkValidity()){
+					return true;
+				}
+				else{
+					var span = document.getElementById("span1");
+					if(this["cliente"].checkValidity() === false){
+						span.innerHTML = this["cliente"].validationMessage + " - Campo cliente";
+					}
+					else if(this["produto"].checkValidity() === false){
+						if(this["produto"].validity.valueMissing){
+							span.innerHTML = "Preencha o campo Produto";
+						}
+						else{
+							span.innerHTML = "Entrada inválida no campo Produto.";
+						}
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do formulário";
+					}
+					return false;
+				}
+			}
+			//-------------------------------------------------------------
+			//FORM 2
+			document.forms["form2"].onsubmit = function(){
+				if(this.checkValidity()){
+					return true;
+				}
+				else{
+					console.dir(this["idade"].validity);
+					var span = document.getElementById("span2");
+					if(this["idade"].checkValidity() === false){
+						if(this["idade"].validity.badInput){
+							span.innerHTML = "Insira um número";
+						}
+						else if(this["idade"].validity.rangeUnderflow){
+							span.innerHTML = "A idade deve ser ao menos " + this["idade"].min;
+						}
+						else if(this["idade"].validity.rangeOverflow){	
+							span.innerHTML = "A idade deve ser no máximo " + this["idade"].max;
+						}
+						else{
+							//Step padrão é 1.
+							span.innerHTML = "Entrada inválida no campo Idade.";
+						}
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do formulário";
+					}
+					return false;
+				}
+			}
+			//-------------------------------------------------------------
+			//FORM 3
+			document.forms["form3"].onsubmit = function(){
+				if(this.checkValidity()){
+					return true;
+				}
+				else{
+					var span = document.getElementById("span3");
+					if(this["numero"].checkValidity() === false){
+						if(this["numero"].validity.badInput){
+							span.innerHTML = "Insira um número";
+						}
+						else if(this["numero"].validity.rangeUnderflow){
+							span.innerHTML = "O número deve ser ao menos 0";
+						}
+						else if(this["numero"].validity.stepMismatch){	
+							span.innerHTML = "O número deve ser divisível por " + this["numero"].step;
+						}
+						else{
+							span.innerHTML = "Entrada inválida no campo Número par";
+						}
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do formulário";
+					}
+					return false;
+				}
+			}
+			//-------------------------------------------------------------
+			//FORM 4
+			document.forms["form4"].onsubmit = function(){
+				if(this.checkValidity()){
+					return true;
+				}
+				else{
+					//minlength e maxlength não são acessíveis como atributos(??)
+					var span = document.getElementById("span4");					
+					if(this["usuario"].checkValidity() === false){
+						if(this["usuario"].validity.valueMissing){	
+							span.innerHTML = "Preencha o campo Usuário";
+						}
+						else if(this["usuario"].validity.tooShort){
+							span.innerHTML = "O Usuário deve ter ao menos 3 caracteres";
+						}
+						else{
+							span.innerHTML = "Entrada inválida no campo Usuário.";
+						}
+					}
+					else if(this["senha"].checkValidity() === false){
+						if(this["senha"].validity.valueMissing){
+							span.innerHTML = "Preencha o campo Senha";
+						}
+						else if(this["senha"].validity.tooShort || this["senha"].validity.tooLong){
+							span.innerHTML = "A Senha deve ter ao entre 8 e 10 caracteres";
+						}
+						else{
+							span.innerHTML = "Entrada inválida no campo Senha.";
+						}
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do formulário";
+					}
+					return false;
+				}
+			}
+			//-------------------------------------------------------------
+			//FORM 5
+			document.forms["form5"].onsubmit = function(){
+				if(this.checkValidity()){
+					return true;
+				}
+				else{
+					var span = document.getElementById("span5");
+					if(this["email"].checkValidity() === false){
+						if(this["email"].validity.valueMissing){
+							span.innerHTML = "Preencha o campo E-mail";
+						}
+						else if(this["email"].validity.typeMismatch){
+							span.innerHTML = this["email"].validationMessage;
+						}
+						else{
+							span.innerHTML = "Entrada inválida no campo Email.";
+						}
+					}
+					else{
+						span.innerHTML = "Erro no preenchimento do formulário";
+					}
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>

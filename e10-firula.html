@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.jovem{
+				background:red;
+			}
+			
+			#tchau{
+				position:absolute;
+			}
+		</style>
+		<script src="jquery-3.1.0.js"></script>
+		<script>
+			$(function(){			
+				function f1(){
+					alert("FUNCAO F1 EXECUTADA");
+				}
+				
+				var f2 = function(){
+					alert("FUNCAO F2 EXECUTADA");
+				}
+				
+				//FUNÇÃO PARA SERVIR DE ARGUMENTO DE EVENTOS (SOMENTE)
+				function f3(e){
+					//e -> informações do evento
+					//e.data -> argumentos passados para o evento
+					//e.data.campo -> valor do campo passado via JSON
+					
+					//EXEMPLO
+					//e.data.nome -> nome do usuário
+					//e.data.idade -> idade do usuário
+					var nome = e.data.nome;
+					var idade = e.data.idade;
+					
+					//PASSANDO ARGUMENTOS - JSON
+					//{"nome":NOME, "idade":IDADE}
+					
+					alert($(this).text() + ": CLICADO: OLÁ " + nome + " DE " + idade + " ANOS.");
+					
+					
+				}
+				
+				$("#will").click(f1);
+				
+				$(".iftm").click(f2);
+				
+				$("button:eq(0)").click({"nome":"Juca", "idade":18}, f3);
+				$("button:eq(1)").click({"nome":"Maria", "idade":36}, f3);
+				
+				$("div:first").click(function(e){
+					alert("x: " + e.pageX + " - y: " + e.pageY);
+				});
+				
+				//FUNÇÃO PARA SER CHAMADA NO CALLBACK
+				function f4(){
+					$(this).toggleClass("jovem"); //ALTERNA CLASSE
+				}
+				
+				function colocaJuventude(){
+					$("div:first").on("juventude", f4);
+				}
+				
+				//ANEXA NOS ELEMENTOS SELECIONADOS O EVENTO "JUVENTUDE" (CUSTOMIZADO)
+				colocaJuventude();
+				
+				//A CADA SEGUNDO - SETINTERVAL
+				setInterval(function(){
+					//DISPARA O EVENTO "JUVENTUDE"
+					$("div:first").trigger("juventude");
+				}, 1000);
+				
+				var juv = true;
+				$("#desliga").click(function(){
+					if(juv){
+						//ELIMINA O EVENTO "JUVENTUDE" DOS ELEMENTOS SELECIONADOS (CUSTOMIZADO)
+						$("div").off("juventude");
+						$("div").off("click");
+						$(this).text("LIGA JUVENTUDE"); 
+						juv = false;
+					}
+					else{
+						colocaJuventude();
+						$(this).text("DESLIGA JUVENTUDE"); 
+						juv = true;
+					}
+				})
+				
+				$("#abre").click(function(){
+					$("div:first").slideDown();
+				});
+				
+				$("#fecha").click(function(){
+					$("div:first").slideUp();
+				});
+				
+				$("#alterna").click(function(){
+					$("div:first").slideToggle();
+				});
+				
+				$("#tchau").click(function(){
+					var inipos = $(this).css("left");
+					$(this).animate({left:"2000px"},
+									2000,
+									function(){
+										$(this).animate({left:inipos},2000);
+									});
+				});
+				//------------------------------------------------------------
+				$("#datasheet td").dblclick(
+					function(e){
+						var td = $(this);
+						var valor = td.text();
+						
+						td.html("<input type='text' value=" + valor + ">");
+						td.find("input").focus();
+						td.find("input").blur(
+							function(e2){
+								td.text($(this).val());
+							}
+						);
+					}
+				);
+				//------------------------------------------------------------
+				$("#imgpequenas img").click(
+					function(e){
+						var imagem = $(this).attr("src");
+						var principal = $("#imgprincipal").attr("src");
+						
+						if(imagem == principal){
+							alert("Já é a imagem principal");
+						}
+						else{
+							$("#imgprincipal").attr("src", imagem);
+						}
+					}
+				)
+				//------------------------------------------------------------
+				$(".link p").click(
+					function(e){
+						var texto = $(this).text();
+						$(this).html("<a href=http://" + texto + ">" + texto + "</a>");
+					}
+				)
+				
+				
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Evento click</h1>
+		
+		<p id="will">Clique em mim - id will</p>
+		
+		<p class="iftm">Clique em mim - classe iftm</p>
+		<p class="iftm">Clique em mim - classe iftm</p>
+		<p class="iftm">Clique em mim - classe iftm</p>
+		
+		<button>BOTÃO 1</button><br />
+		<button>BOTÃO 2</button><br />
+		
+		<br />
+		<button id="desliga">DESLIGA EVENTO JUVENTUDE</button>
+		<br />
+		
+		<div class="jovem">
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		</div>
+		
+		<div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		</div>
+		
+		<button id="abre">ABRE DIVS</button>
+		<button id="fecha">FECHA DIVS</button>
+		<button id="alterna">ALTERNA DIVS</button>
+		<button id="tchau">TCHAU</button>
+		
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		<hr />
+		
+		<table id="datasheet">
+			<th>Nome</th><th>Idade</th>
+			<tr>
+				<td>Aldo</td><td>34</td>
+			</tr>
+			<tr>
+				<td>Bernardo</td><td>19</td>
+			</tr>
+			<tr>
+				<td>Josefa</td><td>45</td>
+			</tr>
+			<tr>
+				<td>Jovem</td><td>99</td>
+			</tr>
+		</table>
+		
+		<hr />
+		
+		<img id="imgprincipal" src="lampon.gif" /> <br /><br />
+		<div id="imgpequenas">
+			<img src="lampon.gif" /> <img src="lampoff.gif" />
+		</div>
+		
+		<hr />
+		
+		<div class="link">
+			<p>www.iftm.edu.br</p>
+			<p>www.google.com.br</p>
+		</div>
+	</body>
+</html>

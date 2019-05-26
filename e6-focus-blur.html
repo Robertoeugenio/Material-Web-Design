@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Eventos focus e blur</h1>
+		
+		<input id="tx1" type="text" value="Me dê foco"/><br /><br />
+		
+		<input id="tx2" type="text" value="Me retire o foco"/><br /><br />
+		
+		<input class="texto" type="text" value="Me dê/retire foco"/><br /><br />
+		<input class="texto" type="text" value="Me dê/retire foco"/><br /><br />
+		<input class="texto" type="text" value="Me dê/retire foco"/><br /><br />
+		<input class="texto" type="text" value="Me dê/retire foco"/><br /><br />
+		
+		<script src="jquery-3.1.0.js"></script>
+		<script>	
+			//Evento focus é disparado quando um elemento ganha
+			//o foco, e é permitida sua edição. Mais utilizado
+			//em campos de texto.
+			
+			//Evento blur é disparado quando um elemento perde
+			//o foco, sendo o foco passado a outro elemento. Mais
+			//utilizado em campos de texto.
+
+			$("#tx1").focus(function(){
+				$(this).css("background","red");
+				alert("Campo de texto #tx1 ganhou foco.");
+			});
+			
+			$("#tx2").blur(function(){
+				$(this).css("background","yellow");
+				alert("Campo de texto #tx2 perdeu foco.");
+			});
+			
+			$(".texto").focus(function(){
+				$(this).css("background","lime");
+			});
+			
+			$(".texto").blur(function(){
+				$(this).css("background","cyan");
+			});
+		</script>
+	</body>
+</html>
